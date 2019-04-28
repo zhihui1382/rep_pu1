@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 
+	注册操作的mapper
+	@Author: 赵国正
+-->
+<mapper namespace="com.tooltar.mapper.RegisterDaoI">
+
+	<!-- 自定义返回结果集 -->
+	<!-- <resultMap id="userMap" type="com.tooltar.bean.UserBean">
+		<id property="id" column="id" javaType="java.lang.Integer"></id>
+		<result property="username" column="username"
+			javaType="java.lang.String"></result>
+		<result property="password" column="password"
+			javaType="java.lang.String"></result>
+		<result property="email" column="email"
+			javaType="java.lang.String"></result>
+		<result property="tel" column="tel" 
+			javaType="java.lang.String"></result>
+		<result property="roleId" column="roleId"
+			javaType="java.lang.Integer"></result>
+	</resultMap> -->
+
+	<insert id="insertUser"
+		parameterType="com.tooltar.bean.UserBean">
+		INSERT INTO USER(id,username,password,email,tel,roleId)
+		VALUES(#{id},#{username},#{password},#{email},#{tel},#{roleId})
+	</insert>
+
+</mapper>

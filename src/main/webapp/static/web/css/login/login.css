@@ -1,0 +1,15 @@
+.left{
+	width:31%;
+	height:100%;
+	display:inline-block;
+}
+.right{
+	width:68%;
+	display:inline-block;
+	height:100%;
+	background-image:url('../../images/login/bg.png');
+	background-size:100% 100%
+}
+.login_box{
+	
+}

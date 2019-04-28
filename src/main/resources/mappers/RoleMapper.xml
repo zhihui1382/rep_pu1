@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 
+	角色操作的mapper
+	@Author: 赵国正
+-->
+<mapper namespace="com.tooltar.mapper.RoleDaoI">
+
+	<!-- 添加角色 -->
+	<insert id="addRole" parameterType="com.tooltar.bean.RoleBean">
+		INSERT INTO role VALUES(null,#{permissionId},#{message})
+	</insert>
+	
+	<!-- 删除角色 -->
+	<delete id="delRole" parameterType="int">
+		DELETE FROM role WHERE id = #{id}
+	</delete>
+	
+	<!-- 给角色授权，修改角色信息 -->
+	<update id="updRole" parameterType="com.tooltar.bean.RoleBean">
+		update role set authority=#{permissionId} where id=#{id}
+	</update>
+	
+	<!-- 多条件查询 -->	
+	<select id="selectUserRole" resultType="com.tooltar.bean.ResultRoleBean">
+		select username,email,tel,r.name,r.authority from user u 
+		left join role r on u.role_id=r.id 
+		<where>
+			<if test="user.email !=null ">
+				u.email=#{user.email}
+			</if>
+			<if test="user.tel !=null ">
+				and u.tel=#{user.tel}
+			</if>
+			<if test="role.name !=null ">
+				and r.name=#{role.name}
+			</if>
+		</where>
+	</select>
+	
+</mapper>

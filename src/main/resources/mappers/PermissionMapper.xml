@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 
+	权限操作的mapper
+	@Author: 赵国正
+-->
+<mapper namespace="com.tooltar.mapper.PermissionDaoI">
+	
+	<!-- 自定义返回结果集 -->
+	<resultMap id="permissionMap" type="com.tooltar.bean.PermissionBean">
+		<id property="id" column="id" javaType="java.lang.Integer"></id>
+		<result property="message" column="message"
+			javaType="java.lang.String"></result>
+	</resultMap>
+	
+	<!-- 查询所有权限 -->
+	<select id="getPermission" resultType="com.tooltar.bean.PermissionBean">
+		select * from permission
+	</select>
+	
+	<!-- 修改角色权限 -->
+	<update id="setPermission" parameterType="com.tooltar.bean.RoleBean">
+		UPDATE role SET permissionId = #{permissionId} WHERE id = #{id}
+	</update>
+
+	<!-- 根据权限id查看描述 -->
+	<select id="getPerDesc" parameterType="java.lang.Integer" 
+		resultType="java.lang.String">
+		select message from  authority where id=#{id}
+	</select>
+	
+	
+</mapper>

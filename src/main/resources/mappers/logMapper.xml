@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tooltar.mapper.LogDaoI">
+	<resultMap id="logResultMap" type="com.tooltar.bean.LogBean">
+		<id column="user_id" property="userId"/><!--  jdbcType="INTEGER"  -->
+		<result column="date" property="date"/> <!-- jdbcType="DATE"  -->
+		<result column="message" property="message"/><!--  jdbcType="VARCHAR" --> 
+	</resultMap>
+	<!-- 分页查询 -->
+	<select id="getLog" resultMap="logResultMap">
+		select * from log
+		<!-- <where>
+			<if test="data!=null and data!=''">
+				and data = #{data}
+			</if>
+		</where> -->
+		limit #{page.start},#{page.rows}
+	</select>
+	<!-- 查询所有数据的数量 -->
+	<select id="getConut" resultType="Integer">
+		select count(1) from log
+	</select>
+	<!-- 添加操作 -->
+	<insert id="insertLog" parameterType="com.tooltar.bean.LogBean">
+		insert into log (data,message)values(#{log.data},#{log.message})
+	</insert>
+</mapper>

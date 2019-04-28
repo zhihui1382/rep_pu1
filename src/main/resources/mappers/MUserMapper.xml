@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tooltar.mapper.MUserDaoI">
+	
+	<!-- 查询所有用户 -->
+	<select id="loadMUserList" resultType="com.tooltar.bean.MUserBean">
+		select * from m_user
+	</select>
+	
+	<!-- 用户多条件查询 -->
+	<select id="loadMUsersList" parameterType="com.tooltar.bean.MUserBean"
+		resultType="com.tooltar.bean.MUserBean">
+		select * from m_user 
+		<where>
+			<if test="username!=null ">
+				username=#{username}
+			</if>
+			<if test="sex!=null ">
+				and sex=#{sex}
+			</if>
+			<if test="tel!=null ">
+				and tel=#{tel}
+			</if>
+			<if test="age!=null ">
+				and age=#{age}
+			</if>
+			<if test="weight!=null ">
+				and weight=#{weight}
+			</if>
+			<if test="height!=null ">
+				and height=#{height}
+			</if>
+			<if test="register_time!=null ">
+				and register_time=#{register_time}
+			</if>
+		</where>
+		
+	</select>
+	
+</mapper>
